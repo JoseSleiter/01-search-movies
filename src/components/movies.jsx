@@ -14,7 +14,7 @@ export const Movies = () => {
 
     return (
         <>
-            <div className='content-movie'>
+            <div className='content-movies'>
                 {hasMovies ? <ListMovies movies={movies} /> : <NotFoundMovies />}
             </div>
         </>
