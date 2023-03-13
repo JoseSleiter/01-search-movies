@@ -1,4 +1,4 @@
-import { useMovies } from '../hooks/useMovies';
+import { useMovies } from '../hooks/useGetMovies';
 import { ListMovies } from './listMovies';
 import { NotFoundMovies } from './notFoundMovies';
 
