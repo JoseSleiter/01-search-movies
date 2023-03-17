@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from 'react';
 
-export const useSearchQuery = ({ Query = "" }) => {
-    const [searchQuery, setSearchQuery] = useState(Query);
-    const [error, setError,] = useState(null);
+export const useSearchQuery = () => {
+    const [searchQuery, setSearchQuery] = useState('');
+    const [errorInput, setError] = useState('');
     const isFirstInput = useRef(true)
 
     useEffect(() => {
@@ -14,8 +14,12 @@ export const useSearchQuery = ({ Query = "" }) => {
             setError("No se puede buscar una pelicula vacia")
             return
         }
-        setError(null)
+        if (searchQuery.length <= 3) {
+            setError("Solo busquedas con mas de 3 caracteres")
+            return
+        }
+        setError('')
     }, [searchQuery]);
 
-    return { searchQuery, setSearchQuery, error }
+    return { searchQuery, setSearchQuery, errorInput }
 }

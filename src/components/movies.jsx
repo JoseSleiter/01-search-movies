@@ -1,12 +1,10 @@
-import { useMovies } from '../hooks/useGetMovies';
 import { ListMovies } from './listMovies';
 import { NotFoundMovies } from './notFoundMovies';
 
-export const Movies = () => {
-    const { movies, hasMovies } = useMovies()
+export const Movies = ({ movies, hasMovies }) => {
     return (
         <>
-            <div className='content-movies'>
+            <div className='content--column content__movies'>
                 {hasMovies ? <ListMovies movies={movies} /> : <NotFoundMovies />}
             </div>
         </>
