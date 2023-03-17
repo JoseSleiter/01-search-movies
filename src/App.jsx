@@ -4,8 +4,8 @@ import { useSearchQuery, useGetMovies } from './hooks';
 
 function App() {
   // controlled-Way
-  const { searchQuery, setSearchQuery, error } = useSearchQuery()
-  const { movies, hasMovies } = useGetMovies({ searchQuery, error })
+  const { searchQuery, setSearchQuery, errorInput } = useSearchQuery()
+  const { movies, hasMovies, loading } = useGetMovies({ searchQuery, errorInput })
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -25,20 +25,20 @@ function App() {
         <form className='content--row form-content' onSubmit={handleSubmit} >
           <input style={{
             border: '1px solid transparent',
-            borderColor: error ? 'red' : 'transparent'
+            borderColor: errorInput ? 'red' : 'transparent'
           }} onChange={hanldeChange} type="search" name="searchQuery" id="searchQuery" placeholder='start wars, hallo, etc...' />
           <button type="submit">Buscar</button>
         </form>
         <p style={{
           color: 'red',
         }}>
-          {error}
+          {errorInput}
         </p>
       </header>
 
       <main className='content--column'>
         <p><b>Results:{searchQuery}</b></p>
-        <Movies movies={movies} hasMovies={hasMovies} />
+        {loading ? <h3>Cargando datos...</h3> : <Movies movies={movies} hasMovies={hasMovies} />}
       </main >
     </div >
   )

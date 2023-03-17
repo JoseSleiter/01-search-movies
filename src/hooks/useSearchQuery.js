@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 
 export const useSearchQuery = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [error, setError] = useState('');
+    const [errorInput, setError] = useState('');
     const isFirstInput = useRef(true)
 
     useEffect(() => {
@@ -21,5 +21,5 @@ export const useSearchQuery = () => {
         setError('')
     }, [searchQuery]);
 
-    return { searchQuery, setSearchQuery, error }
+    return { searchQuery, setSearchQuery, errorInput }
 }
