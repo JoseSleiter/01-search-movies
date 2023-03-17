@@ -1,33 +1,28 @@
 import './App.css';
 import { Movies } from './components/movies';
-import { useSearchQuery } from './hooks';
+import { useSearchQuery, useGetMovies } from './hooks';
 
 function App() {
   // controlled-Way
-  const { searchQuery, setSearchQuery, error } = useSearchQuery({ Query: "" })
-  console.log('Render', searchQuery)
+  const { searchQuery, setSearchQuery, error } = useSearchQuery()
+  const { movies, hasMovies } = useGetMovies({ searchQuery, error })
 
   const handleSubmit = (e) => {
     e.preventDefault()
     // Uncontrolled-Way
     // const formData = new FormData(e.target)
-    // const { searchQuery } = Object.fromEntries(formData)
-    console.log(searchQuery)
+    // const { searchQuery } = Object.fromEntries(formData)    
   }
 
   const hanldeChange = (e) => {
-    const newValue = e.target.value
-    setSearchQuery(newValue)
+    setSearchQuery(e.target.value)
   }
 
-
-
   return (
-    <div className='content-app'>
-
+    <div className='content--column'>
       <header>
         <h1>Search your movies</h1>
-        <form onSubmit={handleSubmit} className='form-content'>
+        <form className='content--row form-content' onSubmit={handleSubmit} >
           <input style={{
             border: '1px solid transparent',
             borderColor: error ? 'red' : 'transparent'
@@ -41,9 +36,9 @@ function App() {
         </p>
       </header>
 
-      <main>
-        <p><b>Results:</b></p>
-        <Movies />
+      <main className='content--column'>
+        <p><b>Results:{searchQuery}</b></p>
+        <Movies movies={movies} hasMovies={hasMovies} />
       </main >
     </div >
   )
