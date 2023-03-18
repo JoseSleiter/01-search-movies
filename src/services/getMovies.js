@@ -1,5 +1,5 @@
 import mappedMovies from '../helpers/mapped/mappedMovies';
-const API_KEY = '44a6c08d'
+const API_KEY = import.meta.env.VITE_API_KEY
 
 export const getMovies = async ({ searchQuery, error, signal }) => {
     if (error || !searchQuery) {

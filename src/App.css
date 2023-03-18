@@ -11,6 +11,10 @@
   justify-content: center;
 }
 
+.img-100-ht {
+  height: 200px;
+}
+
 div.content__movies ul.content__movies__items {
   margin: 0;
   padding: 0;
